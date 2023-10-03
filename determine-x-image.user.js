@@ -73,7 +73,7 @@ const iconBtnStyles = {
     const url = new URL(sourceURL);
     const pathname = url.pathname;
     const parts = pathname.split("/");
-    const fileName = parts[parts.length - 1];
+    const fileName = parts.at(-1);
 
     const link = document.createElement("a");
     link.href = imageURL;
@@ -100,6 +100,15 @@ const iconBtnStyles = {
     if (event.target.tagName === "IMG") {
       const image = event.target;
       const imageURL = image.src;
+
+      const lastSlashIndex = imageURL.lastIndexOf("/");
+      const filename = imageURL.substring(lastSlashIndex + 1);
+      const lastDotIndex = filename.lastIndexOf(".");
+      const fileExtension = filename.substring(lastDotIndex + 1);
+
+      if (fileExtension === "svg") {
+        return;
+      }
 
       image.parentNode.appendChild(toolbar);
 
