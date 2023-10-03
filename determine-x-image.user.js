@@ -32,6 +32,7 @@ const commonStyles = {
 };
 
 const imageSizeLabelStyles = {
+  textAlign: "center",
   fontSize: "0.75rem",
   fontWeight: "bold",
   padding: "0.5rem 0.75rem",
