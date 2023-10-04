@@ -61,7 +61,6 @@ const iconBtnStyles = {
   const downloadIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M11 4h2v8h2v2h-2v2h-2v-2H9v-2h2V4zm-2 8H7v-2h2v2zm6 0v-2h2v2h-2zM4 18h16v2H4v-2z"/></svg>`;
   downloadBtn.innerHTML = downloadIcon;
 
-  toolbar.id = "__image_toolbar";
   toolbar.appendChild(imageSizeLabel);
   toolbar.appendChild(downloadBtn);
 
@@ -93,10 +92,11 @@ const iconBtnStyles = {
   updateImageSizeLabelStyles(imageSizeLabelStyles);
   updateDownloadBtnStyles(iconBtnStyles);
 
+  toolbar.addEventListener("mouseover", (event) => {
+    event.stopPropagation();
+  });
+
   document.body.addEventListener("mouseover", async (event) => {
-    if (event.target?.id === "__image_toolbar") {
-      return;
-    }
     if (event.target.tagName === "IMG") {
       const image = event.target;
       const imageURL = image.src;
@@ -140,17 +140,16 @@ const iconBtnStyles = {
         downloadImage(originImageURL);
       };
 
-      updateToolbarStyles({
-        display: "flex",
-      });
+      updateToolbarStyles({ display: "flex" });
     }
   });
 
   document.body.addEventListener("mouseout", (event) => {
-    if (event.relatedTarget?.id === "__image_toolbar") {
-      return;
-    }
-    if (event.target.tagName === "IMG") {
+    if (
+      event.target.tagName === "IMG" &&
+      event.relatedTarget !== toolbar &&
+      !toolbar.contains(event.relatedTarget)
+    ) {
       updateToolbarStyles({ display: "none" });
     }
   });
