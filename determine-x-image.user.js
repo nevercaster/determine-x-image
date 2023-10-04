@@ -92,6 +92,14 @@ const iconBtnStyles = {
   updateImageSizeLabelStyles(imageSizeLabelStyles);
   updateDownloadBtnStyles(iconBtnStyles);
 
+  downloadBtn.addEventListener("mouseover", () => {
+    updateDownloadBtnStyles({ filter: "brightness(0.9)" });
+  });
+
+  downloadBtn.addEventListener("mouseout", () => {
+    updateDownloadBtnStyles({ filter: "unset" });
+  });
+
   document.body.addEventListener("mouseover", async (event) => {
     if (event.target.tagName === "IMG") {
       const image = event.target;
