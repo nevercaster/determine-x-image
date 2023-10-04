@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Determine X Image
 // @namespace    atk-def
-// @version      1.1
+// @version      1.2
 // @description  Retrieve the original image dimensions and download request in X (Twitter).
 // @author       Ayane
 // @match        https://x.com/*
