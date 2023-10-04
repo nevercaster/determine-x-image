@@ -92,10 +92,6 @@ const iconBtnStyles = {
   updateImageSizeLabelStyles(imageSizeLabelStyles);
   updateDownloadBtnStyles(iconBtnStyles);
 
-  toolbar.addEventListener("mouseover", (event) => {
-    event.stopPropagation();
-  });
-
   document.body.addEventListener("mouseover", async (event) => {
     if (event.target.tagName === "IMG") {
       const image = event.target;
